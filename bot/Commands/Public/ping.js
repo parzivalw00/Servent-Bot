@@ -6,6 +6,6 @@ module.exports = {
     .setDescription('View bot pin'),
 
     async execute(interaction) {
-        return interaction.reply({ content: 'kiramam nisti kos, kesh GOD faghat PARZIVAL.'})
+        return interaction.reply({ content: 'Pong!'})
     }
 }
