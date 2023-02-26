@@ -4,13 +4,14 @@ const {
     Partials,
     Collection
 } = require('discord.js')
+
+const { EmbedBuilder } = require('discord.js')
+const { inspect } = require('util');
+
 const express = require('express')
 const http = require('http')
 const { Server } = require('ws')
 const path = require('path')
-
-const { EmbedBuilder } = require('discord.js')
-const { inspect } = require('util');
 
 const port = 3001;
 const app = express()
@@ -50,32 +51,36 @@ server.listen(port, () => {
 })
 
 client.on('messageCreate', async message => {
-    const args = message.content.split(' ');
-    const command = args.shift().toLowerCase();
-    const embed = new EmbedBuilder()
-    .setDescription('**Result :**```js\n' + `${eval}` + '```')
-    .setColor('Gold')
-    .setFooter({ text: 'Evaled', iconURL: `${message.author.displayAvatarURL()}` })
-    
-    if (command === '!eval') {
+  const args = message.content.split(' ');
+  const command = args.shift().toLowerCase();
+  const embed = new EmbedBuilder()
+  .setDescription('**Result :**```js\n' + `${eval}` + '```')
+  .setColor('Gold')
+  .setFooter({ text: 'Evaled', iconURL: `${message.author.displayAvatarURL()}` })
   
-      if (message.author.id !== '311194511931998209') return;
-      
-      let evaled;
-      try {
-        evaled = await eval(args.join(' '));
-        message.channel.send({ embeds: [embed] });
-      }
-      
-      catch (error) {
-          const errEmbed = new  EmbedBuilder()
-      .setDescription('**Erroe :**```js\n' + `${error}` + '```')
-      .setColor('Red')
-        console.error(error);
-        message.reply({ embeds:
-           [errEmbed],
-           ephemeral: true
-          });
-      }
+  if (command === '!eval') {
+
+    if (message.author.id !== '311194511931998209') return;
+    
+    let evaled;
+    try {
+      evaled = await eval(args.join(' '));
+      message.channel.send({ embeds: [embed] });
     }
-  });
+    
+    catch (error) {
+        const errEmbed = new  EmbedBuilder()
+    .setDescription('**Erroe :**```js\n' + `${error}` + '```')
+    .setColor('Red')
+      console.error(error);
+      message.reply({ embeds:
+         [errEmbed],
+         ephemeral: true
+        });
+    }
+  }
+});
+
+client.on('error', () => { })
+client.on('shardError', error => {return})
+process.on('unhandledRejection', () => {return})
