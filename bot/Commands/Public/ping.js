@@ -6,6 +6,6 @@ module.exports = {
     .setDescription('View bot pin'),
 
     async execute(interaction) {
-        return interaction.reply({ content: 'Pong!'})
+        return interaction.reply({ content: 'Pong!})
     }
 }
