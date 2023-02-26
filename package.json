@@ -21,5 +21,13 @@
   "keywords": [],
   "author": "PARZIVAL",
   "license": "ISC",
-  "description": ""
+  "description": "Discord.js V14 &amp;  React.js || Servent Bot",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parzivalw00/Servent-Bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/parzivalw00/Servent-Bot/issues"
+  },
+  "homepage": "https://github.com/parzivalw00/Servent-Bot#readme"
 }
